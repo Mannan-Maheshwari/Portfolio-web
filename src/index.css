@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Special+Elite&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 5%;
+    --foreground: 40 20% 85%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 40 20% 85%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 40 20% 85%;
+
+    --primary: 35 80% 50%;
+    --primary-foreground: 0 0% 5%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 40 20% 85%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 40 10% 50%;
+
+    --accent: 0 70% 40%;
+    --accent-foreground: 40 20% 90%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 35 30% 20%;
+    --input: 35 30% 20%;
+    --ring: 35 80% 50%;
+
+    --radius: 0.25rem;
+
+    /* RE4 Custom Colors */
+    --blood-red: 0 70% 35%;
+    --amber-glow: 35 90% 55%;
+    --parchment: 40 30% 75%;
+    --fog: 200 10% 60%;
+    --merchant-gold: 45 80% 45%;
+    --village-brown: 25 40% 20%;
+    --typewriter-ink: 40 15% 80%;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 40 20% 85%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 40 20% 85%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 40 20% 85%;
+
+    --primary: 35 80% 50%;
+    --primary-foreground: 0 0% 5%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 40 20% 85%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 40 10% 50%;
+
+    --accent: 0 70% 40%;
+    --accent-foreground: 40 20% 90%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 35 30% 20%;
+    --input: 35 30% 20%;
+    --ring: 35 80% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Crimson Text', serif;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 3px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+  }
+
+  .font-typewriter {
+    font-family: 'Special Elite', cursive;
+  }
+
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+
+  .font-crimson {
+    font-family: 'Crimson Text', serif;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 10px hsl(var(--amber-glow) / 0.5), 0 0 20px hsl(var(--amber-glow) / 0.3);
+  }
+
+  .text-shadow-blood {
+    text-shadow: 0 0 10px hsl(var(--blood-red) / 0.8), 0 2px 4px hsl(0 0% 0% / 0.8);
+  }
+
+  .box-shadow-merchant {
+    box-shadow: 
+      0 0 20px hsl(var(--merchant-gold) / 0.3),
+      inset 0 0 30px hsl(0 0% 0% / 0.5);
+  }
+
+  .gradient-fog {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--background)) 0%,
+      hsl(200 10% 15% / 0.8) 50%,
+      hsl(var(--background)) 100%
+    );
+  }
+
+  .border-rustic {
+    border: 2px solid hsl(var(--village-brown));
+    box-shadow: 
+      inset 0 0 10px hsl(0 0% 0% / 0.5),
+      0 0 5px hsl(var(--merchant-gold) / 0.2);
+  }
+
+  .typewriter-cursor::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  .noise-overlay {
+    position: relative;
+  }
+
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .vignette {
+    position: relative;
+  }
+
+  .vignette::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, hsl(0 0% 0% / 0.7) 100%);
+    pointer-events: none;
+  }
+
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+
+  /* Section transition effects */
+  .section-transition {
+    position: relative;
+  }
+
+  .section-transition::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to bottom, hsl(var(--background)), transparent);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .section-transition::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(to top, hsl(var(--background)), transparent);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Ink reveal animation */
+  @keyframes ink-reveal {
+    0% {
+      clip-path: circle(0% at 50% 50%);
+      opacity: 1;
+    }
+    100% {
+      clip-path: circle(150% at 50% 50%);
+      opacity: 0;
+    }
+  }
+
+  .ink-transition {
+    animation: ink-reveal 1.5s ease-out forwards;
+  }
+}
